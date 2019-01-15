@@ -1,0 +1,16 @@
+introduction
+allSilence
+fadeIn
+singingTime
+allUnisons
+phasing
+allUnisons
+randomHumPercuss
+fadeOut
+percussion
+allUnisons
+phasing
+allUnisons
+allSnap
+singingTime
+allSnap

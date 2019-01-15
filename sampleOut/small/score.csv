@@ -1,0 +1,510 @@
+       , intro      , intro      , intro     
+[0: 1] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 2] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 3] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 4] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 5] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 6] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 7] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 8] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0: 9] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0:10] , intro      , intro      , intro     
+       , intro      , intro      , intro     
+[0:11] , intro      , intro      , intro     
+[0:11] , ********** , ********** , **********
+       , silence1   , silence1   , silence1  
+[0:12] , silence1   , silence1   , silence1  
+       , silence1   , silence1   , silence1  
+[0:13] , silence1   , silence1   , silence1  
+       , silence1   , silence1   , silence1  
+[0:14] , silence1   , silence1   , silence1  
+       , silence1   , silence1   , silence1  
+[0:15] , silence1   , silence1   , silence1  
+[0:15] , ********** , ********** , **********
+       , inNose     , inNose     , inNose    
+[0:16] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:17] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:18] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:19] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:20] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:21] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:22] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:23] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:24] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:25] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:26] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:27] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:28] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:29] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:30] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:31] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:32] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:33] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:34] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:35] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:36] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:37] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:38] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:39] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:40] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:41] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:42] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:43] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:44] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:45] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:46] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:47] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:48] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:49] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:50] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:51] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:52] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:53] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[0:54] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:55] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[0:56] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[0:57] , silence1   , silence1   , silence1  
+       , inNose     , inNose     , inNose    
+[0:58] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[0:59] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[1: 0] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[1: 1] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[1: 2] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[1: 3] , outMouth   , outMouth   , outMouth  
+       , silence1   , silence1   , silence1  
+[1: 4] , silence1   , silence1   , silence1  
+[1: 4] , ********** , ********** , **********
+       , silence1   , in         , silence1  
+[1: 5] , silence1   , in         , silence1  
+       , in         , in         , silence1  
+[1: 6] , in         , in         , silence1  
+       , in         , in         , in        
+[1: 7] , in         , in         , in        
+       , in         , singLow    , in        
+[1: 8] , in         , singLow    , in        
+       , humHigh    , singLow    , in        
+[1: 9] , humHigh    , singLow    , in        
+       , humHigh    , singLow    , out       
+[1:10] , humHigh    , singLow    , out       
+       , humHigh    , silence1   , out       
+[1:11] , humHigh    , silence1   , out       
+       , silence1   , silence1   , out       
+[1:12] , silence1   , silence1   , out       
+       , silence1   , silence1   , silence1  
+[1:13] , silence1   , silence1   , silence1  
+       , silence1   , silence1   , in        
+[1:14] , silence1   , silence1   , in        
+       , silence1   , silence1   , in        
+[1:15] , silence1   , silence1   , in        
+       , silence1   , in         , in        
+[1:16] , silence1   , in         , in        
+       , in         , in         , humHigh   
+[1:17] , in         , in         , humHigh   
+       , in         , in         , humHigh   
+[1:18] , in         , in         , humHigh   
+       , in         , out        , humHigh   
+[1:19] , in         , out        , humHigh   
+       , singLow    , out        , silence1  
+[1:20] , singLow    , out        , silence1  
+       , singLow    , out        , silence1  
+[1:21] , singLow    , out        , silence1  
+       , singLow    , silence1   , silence1  
+[1:22] , singLow    , silence1   , silence1  
+       , silence1   , in         , silence1  
+[1:23] , silence1   , in         , silence1  
+       , silence1   , in         , silence1  
+[1:24] , silence1   , in         , silence1  
+       , silence1   , in         , in        
+[1:25] , silence1   , in         , in        
+       , silence1   , out        , in        
+[1:26] , silence1   , out        , in        
+       , silence1   , out        , in        
+[1:27] , silence1   , out        , in        
+       , in         , out        , singHigh  
+[1:28] , in         , out        , singHigh  
+       , in         , silence1   , singHigh  
+[1:29] , in         , silence1   , singHigh  
+       , in         , in         , singHigh  
+[1:30] , in         , in         , singHigh  
+       , out        , in         , silence1  
+[1:31] , out        , in         , silence1  
+       , out        , in         , silence1  
+[1:32] , out        , in         , silence1  
+       , out        , humLow     , silence1  
+[1:33] , out        , humLow     , silence1  
+       , silence1   , humLow     , silence1  
+[1:34] , silence1   , humLow     , silence1  
+       , in         , humLow     , silence1  
+[1:35] , in         , humLow     , silence1  
+       , in         , silence1   , in        
+[1:36] , in         , silence1   , in        
+       , in         , silence1   , in        
+[1:37] , in         , silence1   , in        
+       , out        , silence1   , in        
+[1:38] , out        , silence1   , in        
+       , out        , silence1   , humLow    
+[1:39] , out        , silence1   , humLow    
+       , out        , silence1   , humLow    
+[1:40] , out        , silence1   , humLow    
+       , silence1   , in         , humLow    
+[1:41] , silence1   , in         , humLow    
+       , in         , in         , silence1  
+[1:42] , in         , in         , silence1  
+       , in         , in         , silence1  
+[1:43] , in         , in         , silence1  
+       , in         , singHigh   , silence1  
+[1:44] , in         , singHigh   , silence1  
+       , singHigh   , singHigh   , silence1  
+[1:45] , singHigh   , singHigh   , silence1  
+       , singHigh   , singHigh   , silence1  
+[1:46] , singHigh   , singHigh   , silence1  
+       , singHigh   , silence1   , in        
+[1:47] , singHigh   , silence1   , in        
+       , silence1   , silence1   , in        
+[1:48] , silence1   , silence1   , in        
+       , silence1   , silence1   , in        
+[1:49] , silence1   , silence1   , in        
+       , silence1   , silence1   , singLow   
+[1:50] , silence1   , silence1   , singLow   
+       , silence1   , silence1   , singLow   
+[1:51] , silence1   , silence1   , singLow   
+       , silence1   , in         , singLow   
+[1:52] , silence1   , in         , singLow   
+       , in         , in         , silence1  
+[1:53] , in         , in         , silence1  
+       , in         , in         , silence1  
+[1:54] , in         , in         , silence1  
+       , in         , humHigh    , silence1  
+[1:55] , in         , humHigh    , silence1  
+       , humLow     , humHigh    , silence1  
+[1:56] , humLow     , humHigh    , silence1  
+       , humLow     , humHigh    , silence1  
+[1:57] , humLow     , humHigh    , silence1  
+       , humLow     , silence1   , in        
+[1:58] , humLow     , silence1   , in        
+       , silence1   , silence1   , in        
+[1:59] , silence1   , silence1   , in        
+       , silence1   , silence1   , in        
+[2: 0] , silence1   , silence1   , in        
+       , silence1   , silence1   , out       
+[2: 1] , silence1   , silence1   , out       
+       , silence1   , silence1   , out       
+[2: 2] , silence1   , silence1   , out       
+       , silence1   , silence1   , out       
+[2: 3] , silence1   , silence1   , out       
+       , silence1   , silence1   , silence1  
+[2: 4] , silence1   , silence1   , silence1  
+       , silence1   , silence1   , silence1  
+[2: 5] , silence1   , silence1   , silence1  
+[2: 5] , ********** , ********** , **********
+       , inNose     , inNose     , inNose    
+[2: 6] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2: 7] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2: 8] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[2: 9] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:10] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:11] , outMouth   , outMouth   , outMouth  
+       , inNose     , inNose     , inNose    
+[2:12] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2:13] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2:14] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[2:15] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:16] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:17] , outMouth   , outMouth   , outMouth  
+       , inNose     , inNose     , inNose    
+[2:18] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2:19] , inNose     , inNose     , inNose    
+       , inNose     , inNose     , inNose    
+[2:20] , inNose     , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[2:21] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:22] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:23] , outMouth   , outMouth   , outMouth  
+       , inMouth    , inNose     , inNose    
+[2:24] , inMouth    , inNose     , inNose    
+       , inMouth    , inNose     , inNose    
+[2:25] , inMouth    , inNose     , inNose    
+       , inMouth    , inNose     , inNose    
+[2:26] , inMouth    , inNose     , inNose    
+       , outMouth   , outMouth   , outMouth  
+[2:27] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:28] , outMouth   , outMouth   , outMouth  
+       , outMouth   , outMouth   , outMouth  
+[2:29] , outMouth   , outMouth   , outMouth  
+       , jchill     , inMouth    , inNose    
+[2:30] , jchill     , inMouth    , inNose    
+       , jchill     , inMouth    , inNose    
+[2:31] , jchill     , inMouth    , inNose    
+       , jchill     , inMouth    , inNose    
+[2:32] , jchill     , inMouth    , inNose    
+       , jchill     , outMouth   , outMouth  
+[2:33] , jchill     , outMouth   , outMouth  
+       , silence1   , outMouth   , outMouth  
+[2:34] , silence1   , outMouth   , outMouth  
+       , silence1   , outMouth   , outMouth  
+[2:35] , silence1   , outMouth   , outMouth  
+       , silence1   , jchill     , inNose    
+[2:36] , silence1   , jchill     , inNose    
+       , silence1   , jchill     , inNose    
+[2:37] , silence1   , jchill     , inNose    
+       , silence1   , jchill     , inNose    
+[2:38] , silence1   , jchill     , inNose    
+       , silence1   , jchill     , outMouth  
+[2:39] , silence1   , jchill     , outMouth  
+       , silence1   , silence1   , outMouth  
+[2:40] , silence1   , silence1   , outMouth  
+       , silence1   , silence1   , outMouth  
+[2:41] , silence1   , silence1   , outMouth  
+       , silence1   , silence1   , inNose    
+[2:42] , silence1   , silence1   , inNose    
+       , silence1   , silence1   , inNose    
+[2:43] , silence1   , silence1   , inNose    
+       , silence1   , silence1   , inNose    
+[2:44] , silence1   , silence1   , inNose    
+       , silence1   , silence1   , outMouth  
+[2:45] , silence1   , silence1   , outMouth  
+       , silence1   , silence1   , outMouth  
+[2:46] , silence1   , silence1   , outMouth  
+       , silence1   , silence1   , outMouth  
+[2:47] , silence1   , silence1   , outMouth  
+[2:47] , ********** , ********** , **********
+       , snapNow    , snapNow    , snapNow   
+[2:48] , snapNow    , snapNow    , snapNow   
+       , snapNow    , snapNow    , snapNow   
+[2:49] , snapNow    , snapNow    , snapNow   
+[2:49] , ********** , ********** , **********
+       , snapIntro  , snapIntro  , in        
+[2:50] , snapIntro  , snapIntro  , in        
+       , snapIntro  , snapIntro  , in        
+[2:51] , snapIntro  , snapIntro  , in        
+       , snapNow    , snapNow    , in        
+[2:52] , snapNow    , snapNow    , in        
+       , snapNow    , snapNow    , humLow    
+[2:53] , snapNow    , snapNow    , humLow    
+       , in         , in         , humLow    
+[2:54] , in         , in         , humLow    
+       , in         , in         , humLow    
+[2:55] , in         , in         , humLow    
+       , in         , in         , silence1  
+[2:56] , in         , in         , silence1  
+       , out        , humLow     , silence1  
+[2:57] , out        , humLow     , silence1  
+       , out        , humLow     , silence1  
+[2:58] , out        , humLow     , silence1  
+       , out        , humLow     , silence1  
+[2:59] , out        , humLow     , silence1  
+       , silence1   , silence1   , silence1  
+[3: 0] , silence1   , silence1   , silence1  
+       , snapNow    , silence1   , snapIntro 
+[3: 1] , snapNow    , silence1   , snapIntro 
+       , snapNow    , silence1   , snapIntro 
+[3: 2] , snapNow    , silence1   , snapIntro 
+       , in         , silence1   , snapNow   
+[3: 3] , in         , silence1   , snapNow   
+       , in         , silence1   , snapNow   
+[3: 4] , in         , silence1   , snapNow   
+       , in         , in         , inMouth   
+[3: 5] , in         , in         , inMouth   
+       , humHigh    , in         , inMouth   
+[3: 6] , humHigh    , in         , inMouth   
+       , humHigh    , in         , inMouth   
+[3: 7] , humHigh    , in         , inMouth   
+       , humHigh    , humHigh    , hold1     
+[3: 8] , humHigh    , humHigh    , hold1     
+       , silence1   , humHigh    , outNose   
+[3: 9] , silence1   , humHigh    , outNose   
+       , silence1   , humHigh    , outNose   
+[3:10] , silence1   , humHigh    , outNose   
+       , silence1   , silence1   , outNose   
+[3:11] , silence1   , silence1   , outNose   
+       , silence1   , silence1   , snapNow   
+[3:12] , silence1   , silence1   , snapNow   
+       , silence1   , silence1   , snapNow   
+[3:13] , silence1   , silence1   , snapNow   
+       , snapNow    , silence1   , in        
+[3:14] , snapNow    , silence1   , in        
+       , snapNow    , silence1   , in        
+[3:15] , snapNow    , silence1   , in        
+       , in         , inMouth    , in        
+[3:16] , in         , inMouth    , in        
+       , in         , inMouth    , humHigh   
+[3:17] , in         , inMouth    , humHigh   
+       , in         , inMouth    , humHigh   
+[3:18] , in         , inMouth    , humHigh   
+       , humLow     , hold1      , humHigh   
+[3:19] , humLow     , hold1      , humHigh   
+       , humLow     , outNose    , silence1  
+[3:20] , humLow     , outNose    , silence1  
+       , humLow     , outNose    , silence1  
+[3:21] , humLow     , outNose    , silence1  
+       , silence1   , outNose    , silence1  
+[3:22] , silence1   , outNose    , silence1  
+       , silence1   , in         , silence1  
+[3:23] , silence1   , in         , silence1  
+       , silence1   , in         , silence1  
+[3:24] , silence1   , in         , silence1  
+       , silence1   , in         , in        
+[3:25] , silence1   , in         , in        
+       , silence1   , out        , in        
+[3:26] , silence1   , out        , in        
+       , inMouth    , out        , in        
+[3:27] , inMouth    , out        , in        
+       , inMouth    , out        , humLow    
+[3:28] , inMouth    , out        , humLow    
+       , inMouth    , silence1   , humLow    
+[3:29] , inMouth    , silence1   , humLow    
+       , hold1      , in         , humLow    
+[3:30] , hold1      , in         , humLow    
+       , outNose    , in         , silence1  
+[3:31] , outNose    , in         , silence1  
+       , outNose    , in         , silence1  
+[3:32] , outNose    , in         , silence1  
+       , outNose    , out        , silence1  
+[3:33] , outNose    , out        , silence1  
+       , in         , out        , silence1  
+[3:34] , in         , out        , silence1  
+       , in         , out        , silence1  
+[3:35] , in         , out        , silence1  
+       , in         , silence1   , in        
+[3:36] , in         , silence1   , in        
+       , humHigh    , in         , in        
+[3:37] , humHigh    , in         , in        
+       , humHigh    , in         , in        
+[3:38] , humHigh    , in         , in        
+       , humHigh    , in         , out       
+[3:39] , humHigh    , in         , out       
+       , silence1   , humLow     , out       
+[3:40] , silence1   , humLow     , out       
+       , silence1   , humLow     , out       
+[3:41] , silence1   , humLow     , out       
+       , silence1   , humLow     , silence1  
+[3:42] , silence1   , humLow     , silence1  
+       , silence1   , silence1   , in        
+[3:43] , silence1   , silence1   , in        
+       , silence1   , silence1   , in        
+[3:44] , silence1   , silence1   , in        
+       , in         , silence1   , in        
+[3:45] , in         , silence1   , in        
+       , in         , silence1   , humHigh   
+[3:46] , in         , silence1   , humHigh   
+       , in         , silence1   , humHigh   
+[3:47] , in         , silence1   , humHigh   
+       , humLow     , snapNow    , humHigh   
+[3:48] , humLow     , snapNow    , humHigh   
+       , humLow     , snapNow    , silence1  
+[3:49] , humLow     , snapNow    , silence1  
+       , humLow     , in         , silence1  
+[3:50] , humLow     , in         , silence1  
+       , silence1   , in         , silence1  
+[3:51] , silence1   , in         , silence1  
+       , silence1   , in         , silence1  
+[3:52] , silence1   , in         , silence1  
+       , silence1   , humHigh    , silence1  
+[3:53] , silence1   , humHigh    , silence1  
+       , silence1   , humHigh    , snapNow   
+[3:54] , silence1   , humHigh    , snapNow   
+       , silence1   , humHigh    , snapNow   
+[3:55] , silence1   , humHigh    , snapNow   
+       , in         , silence1   , in        
+[3:56] , in         , silence1   , in        
+       , in         , silence1   , in        
+[3:57] , in         , silence1   , in        
+       , in         , silence1   , in        
+[3:58] , in         , silence1   , in        
+       , out        , silence1   , out       
+[3:59] , out        , silence1   , out       
+       , out        , silence1   , out       
+[4: 0] , out        , silence1   , out       
+       , out        , inMouth    , out       
+[4: 1] , out        , inMouth    , out       
+       , silence1   , inMouth    , silence1  
+[4: 2] , silence1   , inMouth    , silence1  
+       , inMouth    , inMouth    , inMouth   
+[4: 3] , inMouth    , inMouth    , inMouth   
+       , inMouth    , hold1      , inMouth   
+[4: 4] , inMouth    , hold1      , inMouth   
+       , inMouth    , outNose    , inMouth   
+[4: 5] , inMouth    , outNose    , inMouth   
+       , hold1      , outNose    , hold1     
+[4: 6] , hold1      , outNose    , hold1     
+       , outNose    , outNose    , outNose   
+[4: 7] , outNose    , outNose    , outNose   
+       , outNose    , snapNow    , outNose   
+[4: 8] , outNose    , snapNow    , outNose   
+       , outNose    , snapNow    , outNose   
+[4: 9] , outNose    , snapNow    , outNose   
+[4: 9] , ********** , ********** , **********
+       , snapNow    , snapNow    , snapNow   
+[4:10] , snapNow    , snapNow    , snapNow   
+       , snapNow    , snapNow    , snapNow   
+[4:11] , snapNow    , snapNow    , snapNow   
+[4:11] , ********** , ********** , **********
