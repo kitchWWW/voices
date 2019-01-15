@@ -115,8 +115,10 @@ def getTheToDo(partNo):
 noVoices=4
 
 parts = []
+introCount = []
 for i in range(noVoices):
 	parts.append([])
+	introCount.append([0,0])
 
 
 
@@ -149,10 +151,10 @@ def staggeredUnison():
 	for z in range(2):
 		for i in range(2):
 			for p in range(noVoices):
-				#parts[p].append("in")
+				parts[p].append("in")
 				if p%3 == 1:
 					parts[p].append("hold1")
-				#parts[p].append("out")
+				parts[p].append("out")
 				if p%3 != 1:
 					parts[p].append("silence1")
 		for p in range(noVoices):
@@ -167,26 +169,34 @@ def staggeredUnison():
 		parts[p].append(MARKER)
 
 
-def phasing(voiceLevel, percusLevel):
-	if voiceLevel == SING:
+def levelsForPart(part):
+	VOICE_L = HUM_BREATH_L
+	VOICE_H = HUM_BREATH_H
+	PERCUS = SNAP
+	PERCUS_INTRO = SNAP_INTRO
+	levs = introCount[part]
+	if levs[0] == 1:
 		VOICE_L = SING_BREATH_L
 		VOICE_H = SING_BREATH_H
-	else:
-		VOICE_L = HUM_BREATH_L
-		VOICE_H = HUM_BREATH_H
-
-	if percusLevel == SNAP:
-		PERCUS = SNAP
-		PERCUS_INTRO = SNAP_INTRO
-	else:
+	if levs[1] == 1:
 		PERCUS = CLAP
 		PERCUS_INTRO = CLAP_INTRO
+	if levs[1] > 1:
+		PERCUS = CLAP
+		PERCUS_INTRO = CLAP
+	#yes, currently these are always the same
+	introCount[part] = [levs[0]+1, levs[1]+1]
 
+	return PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H
+
+def phasing():
 	voiceAssignments = range(3)
 	random.shuffle(voiceAssignments)
 
 	# SCENE THREE: a whole conviluted phasing + 2 singing + Snap Intro
 	for p in range(noVoices):
+		PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H = levelsForPart(p)
+
 		# sings and recovers from singing
 		if p%3 == voiceAssignments[0]:
 			# We need 91 seconds
@@ -228,24 +238,12 @@ def phasing(voiceLevel, percusLevel):
 		parts[p].append(MARKER)
 
 
-def randomHumPercuss(voiceLevel, percusLevel):
-	if voiceLevel == SING:
-		VOICE_L = SING_BREATH_L
-		VOICE_H = SING_BREATH_H
-	else:
-		VOICE_L = HUM_BREATH_L
-		VOICE_H = HUM_BREATH_H
-
-	if percusLevel == SNAP:
-		PERCUS = SNAP
-		PERCUS_INTRO = SNAP_INTRO
-	else:
-		PERCUS = CLAP
-		PERCUS_INTRO = CLAP_INTRO
+def randomHumPercuss():
 
 	# INCLUDES CLAP AN DOING IT
 	# SCENE FOUR: PRETTY RANDOM, INCLUDES SECOND INTRO + DOING THE FIRST
 	for p in range(noVoices):
+		PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H = levelsForPart(p)
 		toDo = [
 			PERCUS,
 			PERCUS,
@@ -266,7 +264,6 @@ def randomHumPercuss(voiceLevel, percusLevel):
 			parts[p].extend(getTheToDo(do))
 	for p in range(noVoices):
 		parts[p].append(MARKER)
-
 
 def percussion():
 	#SCENE FIVE: THE PERCUSSIVE ONE
@@ -401,20 +398,12 @@ while not goodToGo:
 	for i in range(len(toDo)):
 		if toDo[i] in [randomHumPercuss,phasing]:
 			introsSoFar +=1
-		if toDo[i] in [percussion, singingTime] and introsSoFar <2:
+		if toDo[i] in [percussion] and introsSoFar <2:
 			goodToGo = False
-
 
 #go through and actually build the piece
 for i in range(len(toDo)):
-	voiceLevel = HUM
-	percusLevel = SNAP
-	if toDo[i] in [randomHumPercuss,phasing]:
-		toDo[i](voiceLevel,percusLevel)
-		voiceLevel = SING
-		percusLevel = CLAP
-
-	elif toDo[i] == allUnisons:
+	if toDo[i] == allUnisons:
 		toDo[i](random.randint(4,7))
 	else:
 		toDo[i]()
@@ -476,7 +465,7 @@ fd = open("score.csv",'w')
 fd.write("\n".join(toWriteTofile))
 fd.close()
 
-fd = open("overview.txt","w")
+fd = open("short_score.txt","w")
 fd.write("\n".join([x.__name__ for x in toDo]))
 fd.close()
 
