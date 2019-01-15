@@ -18,8 +18,6 @@ for file in os.listdir(audioPath):
 		rate = f.getframerate()
 		duration = frames / float(rate) * 2
 		finalName = file.split(".")[0]
-		print(finalName)
-		print(duration)
 		lengths[finalName] = int(duration)
 
 def printAsTime(ticks):
@@ -367,12 +365,13 @@ def fadeOut():
 
 
 
-
+simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
 
 introduction()
 allSilence(random.randint(2,5))
 
 goodToGo = False
+noOfSectionsModifer = -1
 while not goodToGo:
 	toDo = [
 		allUnisons,
@@ -384,14 +383,15 @@ while not goodToGo:
 		staggeredUnison,
 		singingTime,
 	]
-	toDouble = random.sample(toDo,1)[0]
-	toRemove = random.sample(toDo,1)[0]
-	toDo.remove(toRemove)
-	toDo.append(toDouble)
+	toDouble = random.sample(toDo,max(0,2+noOfSectionsModifer))
+	toRemove = random.sample(toDo,max(0,2-noOfSectionsModifer))
+	for func in toRemove:
+		toDo.remove(func)
+	for func in toDouble:
+		toDo.append(func)
 	random.shuffle(toDo)
 	goodToGo = True
 	#make sure fades are not adjacent
-	simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
 	for i in range(1,len(toDo)):
 		if toDo[i] in simpleSounds:
 			if toDo[i-1] in simpleSounds:
@@ -405,10 +405,6 @@ while not goodToGo:
 			goodToGo = False
 
 
-
-print toDo
-
-
 #go through and actually build the piece
 for i in range(len(toDo)):
 	voiceLevel = HUM
@@ -417,12 +413,14 @@ for i in range(len(toDo)):
 		toDo[i](voiceLevel,percusLevel)
 		voiceLevel = SING
 		percusLevel = CLAP
+
+	elif toDo[i] == allUnisons:
+		toDo[i](random.randint(4,7))
 	else:
 		toDo[i]()
 	if i < len(toDo)-1:
-		if toDo[i] not in [fadeIn,fadeOut,staggeredUnison] and toDo[i+1] not in [fadeIn,fadeOut,staggeredUnison]:
+		if toDo[i] not in simpleSounds and toDo[i+1] not in simpleSounds:
 			allUnisons(random.randint(1,3))
-		if toDo[i]
 
 
 
@@ -441,6 +439,7 @@ for i in range(len(toDo)):
 totalDoing = []
 maxLen = 0
 partLens = []
+
 for p in range(noVoices):
 	markerCount = 0
 	toApp = []
@@ -477,8 +476,14 @@ fd = open("score.csv",'w')
 fd.write("\n".join(toWriteTofile))
 fd.close()
 
-print "totalTime = " + printAsTime(maxLen)
-print partLens
+fd = open("overview.txt","w")
+fd.write("\n".join([x.__name__ for x in toDo]))
+fd.close()
+
+print "totalTime = " + printAsTime(maxLen).split(",")[0]
+print "ticks:",str(partLens[0])
+print "segments:", len(toDo)
+
 
 
 
