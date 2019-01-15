@@ -1,3 +1,4 @@
+import contextlib
 import os
 import random
 import wave
@@ -14,11 +15,11 @@ try:
 	os.mkdir(outPath)
 except:
 	pass
+
+
+# start off by building the dictionary of how long the different audio files are
 audioPath = "audio/"
-
 lengths = {}
-
-import contextlib
 for file in os.listdir(audioPath):
 	if file == ".DS_Store":
 		continue
@@ -30,6 +31,9 @@ for file in os.listdir(audioPath):
 		finalName = file.split(".")[0]
 		lengths[finalName] = int(duration)
 
+
+
+# a couple of helper functions
 def printAsTime(ticks):
 	return "[" + str((ticks / 2) / 60)+":{:2d}".format((ticks/2)%60)+'] , '
 
@@ -42,13 +46,36 @@ def hasInfrequentBreaths(part):
 			return True
 	return False
 
-
 def genPartFromTodo(toDo):
 	partToAppend = []
 	for i in range(len(toDo)):
 		partToAppend.extend(getTheToDo(toDo[i]))
 	return partToAppend
 
+def levelsForPart(part):
+	VOICE_L = HUM_BREATH_L
+	VOICE_H = HUM_BREATH_H
+	PERCUS = SNAP
+	PERCUS_INTRO = SNAP_INTRO
+	levs = introCount[part]
+	if levs[0] == 1:
+		VOICE_L = SING_BREATH_L
+		VOICE_H = SING_BREATH_H
+	if levs[1] == 1:
+		PERCUS = CLAP
+		PERCUS_INTRO = CLAP_INTRO
+	if levs[1] > 1:
+		PERCUS = CLAP
+		PERCUS_INTRO = CLAP
+	#yes, currently these are always the same
+	introCount[part] = [levs[0]+1, levs[1]+1]
+
+	return PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H
+
+
+
+
+# and all of our constants
 MARKER = "**********"
 lengths[MARKER]=0
 
@@ -71,6 +98,7 @@ CLAP = "CLAP"
 SNAP_INTRO = "SNAP_INTRO"
 SNAP = "SNAP"
 
+# and like the most important helper function
 def getTheToDo(partNo):
 	ret = []
 	if partNo == NORMAL_BREATH:
@@ -118,38 +146,10 @@ def getTheToDo(partNo):
 		ret.append("snapIntro")
 	return ret
 
-def levelsForPart(part):
-	VOICE_L = HUM_BREATH_L
-	VOICE_H = HUM_BREATH_H
-	PERCUS = SNAP
-	PERCUS_INTRO = SNAP_INTRO
-	levs = introCount[part]
-	if levs[0] == 1:
-		VOICE_L = SING_BREATH_L
-		VOICE_H = SING_BREATH_H
-	if levs[1] == 1:
-		PERCUS = CLAP
-		PERCUS_INTRO = CLAP_INTRO
-	if levs[1] > 1:
-		PERCUS = CLAP
-		PERCUS_INTRO = CLAP
-	#yes, currently these are always the same
-	introCount[part] = [levs[0]+1, levs[1]+1]
-
-	return PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H
 
 
 
-
-
-
-parts = []
-introCount = []
-for i in range(noVoices):
-	parts.append([])
-	introCount.append([0,0])
-
-
+### all the deffinitions of scenes. These all add directly to "parts" array!
 
 def introduction():
 	#STARTING
@@ -249,7 +249,6 @@ def phasing():
 	for p in range(noVoices):
 		parts[p].append(MARKER)
 
-
 def randomHumPercuss():
 
 	# INCLUDES CLAP AN DOING IT
@@ -343,7 +342,6 @@ def fadeIn():
 	for p in range(noVoices):
 		parts[p].append(MARKER)		
 
-
 def fadeOut():
 	#SCENE SEVEN: FADE OUT
 	starter = random.randint(0,noVoices-1)
@@ -371,11 +369,18 @@ def fadeOut():
 
 
 
+# initlize the parts and things to start actually making the piece!
+parts = []
+introCount = []
+for i in range(noVoices):
+	parts.append([])
+	introCount.append([0,0])
 
 
+
+# Find the order of things we are going to play
 
 simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
-
 goodToGo = False
 while not goodToGo:
 	toDo = [
@@ -417,10 +422,13 @@ while not goodToGo:
 		if toDo[i] in [percussion] and introsSoFar <2:
 			goodToGo = False
 
-#go through and actually build the piece
 
+
+
+
+
+#go through and actually build the piece, calling all the scene functions above
 shortScore = []
-
 
 introduction()
 shortScore.append(introduction)
@@ -456,9 +464,10 @@ shortScore.append(allSnap)
 
 
 
+#now start outputing things
 
 
-
+# this builds the map of who is doing exactly what at every half second
 totalDoing = []
 maxLen = 0
 partLens = []
@@ -479,6 +488,7 @@ for p in range(noVoices):
 	totalDoing.append(toApp)
 
 
+# This actually writes that information to a score and to a short_score
 ticks = 0
 toWriteTofile = []
 for i in range(maxLen+ markerCount):
@@ -503,6 +513,9 @@ fd = open(outPath+"short_score.txt","w")
 fd.write("\n".join([x.__name__ for x in shortScore]))
 fd.close()
 
+
+
+# tell the user how long this whole shindig is taking
 print "totalTime = " + printAsTime(maxLen).split(",")[0]
 print "ticks:",str(partLens[0])
 print "segments:", len(toDo)
@@ -510,6 +523,9 @@ print "segments:", len(toDo)
 
 
 
+
+
+# now make the actual audio files!
 for p in range(len(parts)):
 	data= []
 	for infile in parts[p]:
