@@ -22,6 +22,9 @@ for file in os.listdir(audioPath):
 		print(duration)
 		lengths[finalName] = int(duration)
 
+def printAsTime(ticks):
+	return "[" + str((ticks / 2) / 60)+":{:2d}".format((ticks/2)%60)+'] , '
+
 def hasInfrequentBreaths(part):
 	sinceLastBreath = 0
 	for i in range(len(part)):
@@ -49,12 +52,10 @@ REVER_BREATH = "REVER_BREATH"
 
 HUM = "HUM"
 HUM_BREATH_L = "HUM_BREATH_L"
-HUM_BREATH_M = "HUM_BREATH_M"
 HUM_BREATH_H = "HUM_BREATH_H"
 
 SING = "SING"
 SING_BREATH_L = "SING_BREATH_L"
-SING_BREATH_M = "SING_BREATH_M"
 SING_BREATH_H = "SING_BREATH_H"
 
 CLAP_INTRO = "CLAP_INTRO"
@@ -75,12 +76,10 @@ def getTheToDo(partNo):
 		ret.append("inMouth")
 		ret.append("hold1")
 		ret.append("outNose")
-	if partNo in [HUM_BREATH_L, HUM_BREATH_M, HUM_BREATH_H]:
+	if partNo in [HUM_BREATH_L, HUM_BREATH_H]:
 		ret.append("in")
 		if partNo == HUM_BREATH_L:
 			ret.append("humLow")
-		elif partNo == HUM_BREATH_M:
-			ret.append("humMiddle")
 		elif partNo == HUM_BREATH_H:
 			ret.append("humHigh")
 		ret.append("silence1")
@@ -89,12 +88,10 @@ def getTheToDo(partNo):
 		ret.append("silence1")
 		ret.append("silence1")
 
-	if partNo in [SING_BREATH_L, SING_BREATH_M, SING_BREATH_H]:
+	if partNo in [SING_BREATH_L, SING_BREATH_H]:
 		ret.append("in")
 		if partNo == SING_BREATH_L:
 			ret.append("singLow")
-		elif partNo == SING_BREATH_M:
-			ret.append("singMiddle")
 		elif partNo == SING_BREATH_H:
 			ret.append("singHigh")
 		ret.append("silence1")
@@ -175,11 +172,9 @@ def staggeredUnison():
 def phasing(voiceLevel, percusLevel):
 	if voiceLevel == SING:
 		VOICE_L = SING_BREATH_L
-		VOICE_M = SING_BREATH_M
 		VOICE_H = SING_BREATH_H
 	else:
 		VOICE_L = HUM_BREATH_L
-		VOICE_M = HUM_BREATH_M
 		VOICE_H = HUM_BREATH_H
 
 	if percusLevel == SNAP:
@@ -189,10 +184,13 @@ def phasing(voiceLevel, percusLevel):
 		PERCUS = CLAP
 		PERCUS_INTRO = CLAP_INTRO
 
+	voiceAssignments = range(3)
+	random.shuffle(voiceAssignments)
+
 	# SCENE THREE: a whole conviluted phasing + 2 singing + Snap Intro
 	for p in range(noVoices):
 		# sings and recovers from singing
-		if p%3 == 0:
+		if p%3 == voiceAssignments[0]:
 			# We need 91 seconds
 			# normal breaths are 7
 			# short breaths are 6
@@ -200,7 +198,7 @@ def phasing(voiceLevel, percusLevel):
 			# therefore we need 6 normal, 2 singing, 4 short
 			toDo = [NORMAL_BREATH]*6
 			toDo.extend([VOICE_L])
-			toDo.extend([VOICE_M])
+			toDo.extend([VOICE_H])
 			toDo.extend([QUICK_BREATH]*4)
 			random.shuffle(toDo)
 			toDo.append(PERCUS_INTRO)
@@ -210,7 +208,7 @@ def phasing(voiceLevel, percusLevel):
 			parts[p].append("in")
 			parts[p].append("hold1")
 			parts[p].append("out")
-		if p%3 == 1:
+		if p%3 == voiceAssignments[1]:
 			# just keep the dang beat
 			for i in range(13):
 				parts[p].extend(getTheToDo(NORMAL_BREATH))	
@@ -219,7 +217,7 @@ def phasing(voiceLevel, percusLevel):
 			parts[p].append("out")
 					
 
-		if p%3 == 2:
+		if p%3 == voiceAssignments[2]:
 			# Phasing time!!!!!
 			for i in range(14):
 				parts[p].append("in")
@@ -235,11 +233,9 @@ def phasing(voiceLevel, percusLevel):
 def randomHumPercuss(voiceLevel, percusLevel):
 	if voiceLevel == SING:
 		VOICE_L = SING_BREATH_L
-		VOICE_M = SING_BREATH_M
 		VOICE_H = SING_BREATH_H
 	else:
 		VOICE_L = HUM_BREATH_L
-		VOICE_M = HUM_BREATH_M
 		VOICE_H = HUM_BREATH_H
 
 	if percusLevel == SNAP:
@@ -261,7 +257,7 @@ def randomHumPercuss(voiceLevel, percusLevel):
 			REVER_BREATH,
 			REVER_BREATH,
 			VOICE_L,
-			VOICE_M,
+			VOICE_L,
 			]
 		random.shuffle(toDo)
 		toDo.insert(random.randint(0,int(len(toDo)/2)),VOICE_H)
@@ -289,8 +285,31 @@ def percussion():
 			partToAppend.insert(random.randint(0,len(partToAppend)-1), "snapNow")
 		for i in range(3):
 			partToAppend.insert(random.randint(0,len(partToAppend)-1), "clapNow")
-		print partToAppend
 		parts[p].extend(partToAppend)
+	for p in range(noVoices):
+		parts[p].append(MARKER)
+
+def singingTime():
+	#SCENE FIVE: THE PERCUSSIVE ONE
+	# just a bunch of snapping and clapping:
+	waitsBeforeStarting = range(noVoices)
+	random.shuffle(waitsBeforeStarting)
+	for p in range(noVoices):
+		toDo = [
+			NORMAL_BREATH,
+			NORMAL_BREATH,
+			HUM_BREATH_L,
+			HUM_BREATH_H,
+			SING_BREATH_L,
+			SING_BREATH_H,
+			]
+		random.shuffle(toDo)
+		partToAppend = ["silence1"] * waitsBeforeStarting[p]
+		partToAppend.extend(genPartFromTodo(toDo))
+		partToAppend.extend(["silence1"] * (noVoices - waitsBeforeStarting[p]))
+
+		parts[p].extend(partToAppend)
+
 	for p in range(noVoices):
 		parts[p].append(MARKER)
 
@@ -353,46 +372,57 @@ def fadeOut():
 introduction()
 allSilence(random.randint(2,5))
 
-toDo = [
-	fadeIn,
-	fadeOut,
-	percussion,
-	randomHumPercuss,
-	phasing,
-	staggeredUnison,
-]
 goodToGo = False
 while not goodToGo:
+	toDo = [
+		allUnisons,
+		fadeIn,
+		fadeOut,
+		percussion,
+		randomHumPercuss,
+		phasing,
+		staggeredUnison,
+		singingTime,
+	]
+	toDouble = random.sample(toDo,1)[0]
+	toRemove = random.sample(toDo,1)[0]
+	toDo.remove(toRemove)
+	toDo.append(toDouble)
 	random.shuffle(toDo)
 	goodToGo = True
-
 	#make sure fades are not adjacent
-	for i in range(1,len(toDo)-1):
-		if toDo[i] in [fadeIn, fadeOut]:
-			if fadeIn in [toDo[i-1],toDo[i+1]] or fadeOut in [toDo[i-1],toDo[i+1]]:
+	simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
+	for i in range(1,len(toDo)):
+		if toDo[i] in simpleSounds:
+			if toDo[i-1] in simpleSounds:
 				goodToGo = False
 	introsSoFar = 0
+	# make sur we get two adds before percussion or singing time
 	for i in range(len(toDo)):
 		if toDo[i] in [randomHumPercuss,phasing]:
 			introsSoFar +=1
-		if toDo[i] == percussion and introsSoFar <2:
+		if toDo[i] in [percussion, singingTime] and introsSoFar <2:
 			goodToGo = False
 
 
-allSilence(random.randint(2,5))
 
+print toDo
 
 
 #go through and actually build the piece
-for i in toDo:
+for i in range(len(toDo)):
 	voiceLevel = HUM
 	percusLevel = SNAP
-	if i in [randomHumPercuss,phasing]:
-		i(voiceLevel,percusLevel)
+	if toDo[i] in [randomHumPercuss,phasing]:
+		toDo[i](voiceLevel,percusLevel)
 		voiceLevel = SING
 		percusLevel = CLAP
 	else:
-		i()
+		toDo[i]()
+	if i < len(toDo)-1:
+		if toDo[i] not in [fadeIn,fadeOut,staggeredUnison] and toDo[i+1] not in [fadeIn,fadeOut,staggeredUnison]:
+			allUnisons(random.randint(1,3))
+		if toDo[i]
 
 
 
@@ -426,20 +456,29 @@ for p in range(noVoices):
 		maxLen = len(toApp)- markerCount
 	totalDoing.append(toApp)
 
-for i in range(maxLen+15):
+
+ticks = 0
+toWriteTofile = []
+for i in range(maxLen+ markerCount):
 	toPrint = []
 	for p in range(len(parts)):
 		try:
 			toPrint.append('{:10s}'.format(totalDoing[p][i]))
+			if p == 0 and totalDoing[p][i] != MARKER:
+				ticks+=1
 		except:
 			toPrint.append('{:10s}'.format(" "))
-	print " - ".join (toPrint)
+	timeBit = " "*7+", "
+	if int(ticks/2.0) == ticks/2.0:
+		timeBit = printAsTime(int(ticks))
+	toWriteTofile.append(timeBit + " , ".join (toPrint))
 
-print "totalTime = " + str((maxLen / 2) / 60)+":{:2d}".format((maxLen/2)%60)
+fd = open("score.csv",'w')
+fd.write("\n".join(toWriteTofile))
+fd.close()
+
+print "totalTime = " + printAsTime(maxLen)
 print partLens
-
-
-
 
 
 
