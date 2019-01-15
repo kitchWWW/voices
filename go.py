@@ -6,7 +6,9 @@ timeStamp = "1234"
 
 outfile = "part_no_{pNo}.wav"
 outPath = "out/"+timeStamp+"/"
-noOfSectionsModifer = -2 #-2 is shorter, 2 is longer, 0 is normal
+noOfSectionsModifer = 0 #-2 is shorter, 2 is longer, 0 is normal
+noVoices=6
+
 
 try:
 	os.mkdir(outPath)
@@ -140,7 +142,6 @@ def levelsForPart(part):
 
 
 
-noVoices=6
 
 parts = []
 introCount = []
