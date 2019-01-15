@@ -7,8 +7,8 @@ timeStamp = "1234"
 
 outfile = "part_no_{pNo}.wav"
 outPath = "out/"+timeStamp+"/"
-noOfSectionsModifer = 0 #-2 is shorter, 2 is longer, 0 is normal
-noVoices=6
+noOfSectionsModifer = -2 #-2 is shorter, 2 is longer, 0 is normal
+noVoices=3
 
 
 try:
@@ -548,7 +548,7 @@ for p in range(len(parts)):
 
 # and convert it to an MP3?
 
-for i in range(len(parts)):
+for p in range(len(parts)):
 	os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)))
 
 
