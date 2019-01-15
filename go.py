@@ -6,6 +6,8 @@ timeStamp = "1234"
 
 outfile = "part_no_{pNo}.wav"
 outPath = "out/"+timeStamp+"/"
+noOfSectionsModifer = -2 #-2 is shorter, 2 is longer, 0 is normal
+
 try:
 	os.mkdir(outPath)
 except:
@@ -374,7 +376,6 @@ def fadeOut():
 simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
 
 goodToGo = False
-noOfSectionsModifer = -2
 while not goodToGo:
 	toDo = [
 		allUnisons,
@@ -417,22 +418,32 @@ while not goodToGo:
 
 #go through and actually build the piece
 
+shortScore = []
+
 
 introduction()
+shortScore.append(introduction)
+
 allSilence(random.randint(2,5))
+shortScore.append(allSilence)
 
 for i in range(len(toDo)):
 	if i == len(toDo)-1:
 		allSnap()
+		shortScore.append(allSnap)
 	if toDo[i] == allUnisons:
 		toDo[i](random.randint(4,7))
+		shortScore.append(toDo[i])
 	else:
 		toDo[i]()
+		shortScore.append(toDo[i])
 	if i < len(toDo)-1:
 		if toDo[i] not in simpleSounds and toDo[i+1] not in simpleSounds:
 			allUnisons(random.randint(1,3))
+			shortScore.append(allUnisons)
 
 allSnap()
+shortScore.append(allSnap)
 
 
 
@@ -488,7 +499,7 @@ fd.write("\n".join(toWriteTofile))
 fd.close()
 
 fd = open(outPath+"short_score.txt","w")
-fd.write("\n".join([x.__name__ for x in toDo]))
+fd.write("\n".join([x.__name__ for x in shortScore]))
 fd.close()
 
 print "totalTime = " + printAsTime(maxLen).split(",")[0]
