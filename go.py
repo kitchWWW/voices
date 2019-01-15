@@ -2,8 +2,14 @@ import os
 import random
 import wave
 
-outfile = "part_no_{pNo}.wav"
+timeStamp = "1234"
 
+outfile = "part_no_{pNo}.wav"
+outPath = "out/"+timeStamp+"/"
+try:
+	os.mkdir(outPath)
+except:
+	pass
 audioPath = "audio/"
 
 lengths = {}
@@ -108,11 +114,31 @@ def getTheToDo(partNo):
 		ret.append("snapIntro")
 	return ret
 
+def levelsForPart(part):
+	VOICE_L = HUM_BREATH_L
+	VOICE_H = HUM_BREATH_H
+	PERCUS = SNAP
+	PERCUS_INTRO = SNAP_INTRO
+	levs = introCount[part]
+	if levs[0] == 1:
+		VOICE_L = SING_BREATH_L
+		VOICE_H = SING_BREATH_H
+	if levs[1] == 1:
+		PERCUS = CLAP
+		PERCUS_INTRO = CLAP_INTRO
+	if levs[1] > 1:
+		PERCUS = CLAP
+		PERCUS_INTRO = CLAP
+	#yes, currently these are always the same
+	introCount[part] = [levs[0]+1, levs[1]+1]
+
+	return PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H
 
 
 
 
-noVoices=4
+
+noVoices=6
 
 parts = []
 introCount = []
@@ -146,6 +172,11 @@ def allUnisons(length):
 	for p in range(noVoices):
 		parts[p].append(MARKER)
 
+def allSnap():
+	for p in range(noVoices):
+		parts[p].append("snapNow")
+		parts[p].append(MARKER)
+
 def staggeredUnison():
 	# SCENE TWO: Mostly together but one person is offset
 	for z in range(2):
@@ -164,30 +195,8 @@ def staggeredUnison():
 			parts[p].append("silence1")
 			parts[p].append("silence1")
 
-
 	for p in range(noVoices):
 		parts[p].append(MARKER)
-
-
-def levelsForPart(part):
-	VOICE_L = HUM_BREATH_L
-	VOICE_H = HUM_BREATH_H
-	PERCUS = SNAP
-	PERCUS_INTRO = SNAP_INTRO
-	levs = introCount[part]
-	if levs[0] == 1:
-		VOICE_L = SING_BREATH_L
-		VOICE_H = SING_BREATH_H
-	if levs[1] == 1:
-		PERCUS = CLAP
-		PERCUS_INTRO = CLAP_INTRO
-	if levs[1] > 1:
-		PERCUS = CLAP
-		PERCUS_INTRO = CLAP
-	#yes, currently these are always the same
-	introCount[part] = [levs[0]+1, levs[1]+1]
-
-	return PERCUS,PERCUS_INTRO,VOICE_L,VOICE_H
 
 def phasing():
 	voiceAssignments = range(3)
@@ -364,11 +373,8 @@ def fadeOut():
 
 simpleSounds = [fadeIn, fadeOut, allUnisons,staggeredUnison]
 
-introduction()
-allSilence(random.randint(2,5))
-
 goodToGo = False
-noOfSectionsModifer = -1
+noOfSectionsModifer = -2
 while not goodToGo:
 	toDo = [
 		allUnisons,
@@ -389,6 +395,14 @@ while not goodToGo:
 	random.shuffle(toDo)
 	goodToGo = True
 	#make sure fades are not adjacent
+	if toDo[0] not in simpleSounds:
+		goodToGo = False
+
+	for i in range(1,len(toDo)):
+		if toDo[i] == toDo[i-1]:
+			goodToGo = False
+
+	#avoid simple sounds next to eachother
 	for i in range(1,len(toDo)):
 		if toDo[i] in simpleSounds:
 			if toDo[i-1] in simpleSounds:
@@ -402,7 +416,14 @@ while not goodToGo:
 			goodToGo = False
 
 #go through and actually build the piece
+
+
+introduction()
+allSilence(random.randint(2,5))
+
 for i in range(len(toDo)):
+	if i == len(toDo)-1:
+		allSnap()
 	if toDo[i] == allUnisons:
 		toDo[i](random.randint(4,7))
 	else:
@@ -411,6 +432,7 @@ for i in range(len(toDo)):
 		if toDo[i] not in simpleSounds and toDo[i+1] not in simpleSounds:
 			allUnisons(random.randint(1,3))
 
+allSnap()
 
 
 
@@ -461,11 +483,11 @@ for i in range(maxLen+ markerCount):
 		timeBit = printAsTime(int(ticks))
 	toWriteTofile.append(timeBit + " , ".join (toPrint))
 
-fd = open("score.csv",'w')
+fd = open(outPath+"score.csv",'w')
 fd.write("\n".join(toWriteTofile))
 fd.close()
 
-fd = open("short_score.txt","w")
+fd = open(outPath+"short_score.txt","w")
 fd.write("\n".join([x.__name__ for x in toDo]))
 fd.close()
 
@@ -485,7 +507,7 @@ for p in range(len(parts)):
 		data.append( [w.getparams(), w.readframes(w.getnframes())] )
 		w.close()
 
-	output = wave.open(outfile.format(pNo=str(p+1)), 'wb')
+	output = wave.open(outPath+outfile.format(pNo=str(p+1)), 'wb')
 	output.setparams(data[0][0])
 	# print parts[p]
 	dataIndex = 0
