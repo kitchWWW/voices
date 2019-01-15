@@ -545,3 +545,13 @@ for p in range(len(parts)):
 		output.writeframes(data[dataIndex][1])
 		dataIndex+=1
 	output.close()
+
+# and convert it to an MP3?
+
+for i in range(len(parts)):
+	os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)))
+
+
+
+
+
