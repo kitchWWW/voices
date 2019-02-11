@@ -514,7 +514,7 @@ for p in range(noVoices):
 	for i in range(len(parts[p])):
 		print parts[p][i]
 		if parts[p][i] == "pitch7":
-			parts[p][i] = "_pitch"+str(getPitch())
+			parts[p][i] = "pitch"+str(getPitch())
 
 
 
