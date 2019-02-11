@@ -3,12 +3,12 @@ import os
 import random
 import wave
 
-timeStamp = "1234"
+timeStamp = "12345"
 
 outfile = "part_no_{pNo}.wav"
 outPath = "out/"+timeStamp+"/"
 noOfSectionsModifer = 0 #-2 is shorter, 2 is longer, 0 is normal
-noVoices=6
+noVoices=4
 generateMP3 = True
 
 try:
@@ -77,6 +77,7 @@ def levelsForPart(part):
 
 # and all of our constants
 MARKER = "**********"
+
 lengths[MARKER]=0
 
 
@@ -114,27 +115,13 @@ def getTheToDo(partNo):
 		ret.append("outNose")
 	if partNo in [HUM_BREATH_L, HUM_BREATH_H]:
 		ret.append("in")
-		if partNo == HUM_BREATH_L:
-			ret.append("humLow")
-		elif partNo == HUM_BREATH_H:
-			ret.append("humHigh")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
+		ret.append("hum")
+		ret.append("pitch7")
 
 	if partNo in [SING_BREATH_L, SING_BREATH_H]:
 		ret.append("in")
-		if partNo == SING_BREATH_L:
-			ret.append("singLow")
-		elif partNo == SING_BREATH_H:
-			ret.append("singHigh")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
-		ret.append("silence1")
+		ret.append("sing")
+		ret.append("pitch7")
 	if partNo == SNAP:
 		ret.append("snapNow")
 	if partNo == CLAP:
@@ -463,6 +450,80 @@ shortScore.append(allSnap)
 
 
 
+# now go through and replace every "pitch7" with an actual pitch. 7 is length
+
+
+
+
+
+
+
+
+
+
+totalNumberOfPitchesToSing = 0
+print parts
+for p in range(noVoices):
+	for i in range(len(parts[p])):
+		print parts[p][i]
+		if parts[p][i] == "pitch7":
+			totalNumberOfPitchesToSing += 1
+
+print totalNumberOfPitchesToSing
+
+freePitches = totalNumberOfPitchesToSing-2
+
+numberOfKeyAreas = freePitches / (3*noVoices)
+lenOfKeyAreas = (3*noVoices)
+print "numberOfKeyAreas", numberOfKeyAreas
+
+
+
+
+keyAreas = [
+	[0,4,5,7],
+	[2,4,5,9],
+	[0,4,5,9],
+	[0,3,7,8],
+	[0,2,5,9],
+	[2,4,5,9]
+]
+noteNames = ['c','cis','d','dis','e','f','fis','g','gis','a','ais','b']
+
+for i in range(len(keyAreas)):
+	random.shuffle(keyAreas[i])
+
+def getPitch():
+	global pitchesSungSoFar
+	if pitchesSungSoFar > freePitches or pitchesSungSoFar == 0:
+		pitchesSungSoFar += 1
+		return noteNames[0]
+	keyArea = pitchesSungSoFar / lenOfKeyAreas
+	ret = noteNames[keyAreas[keyArea][pitchesSungSoFar % 4] % len(noteNames)]
+	print "hello help"
+	print ret
+	pitchesSungSoFar+=1
+	return ret
+
+
+
+
+
+pitchesSungSoFar = 0
+for p in range(noVoices):
+	for i in range(len(parts[p])):
+		print parts[p][i]
+		if parts[p][i] == "pitch7":
+			parts[p][i] = "_pitch"+str(getPitch())
+
+
+
+
+
+
+
+
+
 
 #now start outputing things
 
@@ -530,7 +591,7 @@ for p in range(len(parts)):
 	data= []
 	for infile in parts[p]:
 		if infile == MARKER:
-			continue
+			continue 
 		w = wave.open("audio/"+infile+".wav")
 		data.append( [w.getparams(), w.readframes(w.getnframes())] )
 		w.close()
@@ -549,7 +610,8 @@ for p in range(len(parts)):
 # and convert it to an MP3?
 if generateMP3:
 	for p in range(len(parts)):
-		os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)))
+		pass
+		#os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)) +" &" )
 
 
 
