@@ -138,12 +138,16 @@ def getTheToDo(partNo):
 
 ### all the deffinitions of scenes. These all add directly to "parts" array!
 
-def introduction():
+def talking(isIntro):
 	#STARTING
-	for p in range(noVoices):
-		parts[p].append("intro")
-		parts[p].append(MARKER)
-
+	if isIntro:
+		for p in range(noVoices):
+			parts[p].append("intro")
+			parts[p].append(MARKER)
+	else:
+		for p in range(noVoices):
+			parts[p].append("ending")
+		
 def allSilence(length):
 	for p in range(noVoices):
 		for i in range(length):
@@ -417,10 +421,10 @@ while not goodToGo:
 #go through and actually build the piece, calling all the scene functions above
 shortScore = []
 
-introduction()
-shortScore.append(introduction)
+talking(True)
+shortScore.append(talking)
 
-allSilence(random.randint(2,5))
+allSilence(2)
 shortScore.append(allSilence)
 
 for i in range(len(toDo)):
@@ -440,6 +444,10 @@ for i in range(len(toDo)):
 
 allSnap()
 shortScore.append(allSnap)
+allSilence(3)
+talking(False)
+allSilence(3)
+shortScore.append(talking)
 
 
 

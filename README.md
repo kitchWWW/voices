@@ -6,3 +6,5 @@ A short script that combines the instruction fragments found in `audio/` in to l
 All performers stand on stage with headphones and listen to their own sets of instructions. (`out/<timestamp>/part_no_#.wav`) The majority of the compute time comes from using the utility `lame` to convert the `.wav` files to `.mp3`.
 
 A sample score, short score, and parts are available in `sampleOut`.
+
+Practice files, including a practice audio file, can be found in the practice folder. This contains instructions as well as a reduced sample that contains every element found in the piece.
