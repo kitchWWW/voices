@@ -619,7 +619,7 @@ for p in range(len(parts)):
 if generateMP3:
 	for p in range(len(parts)):
 		pass
-		#os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)) +" &" )
+		os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)) +" &" )
 
 
 
