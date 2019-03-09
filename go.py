@@ -2,14 +2,17 @@ import contextlib
 import os
 import random
 import wave
+import sys
 
-timeStamp = "12345"
-
+timeStamp = sys.argv[1]
+if '---' in timeStamp:
+	seed = timeStamp.split('---')[0]
+	random.seed(a=seed)
 outfile = "part_no_{pNo}.wav"
 outPath = "out/"+timeStamp+"/"
-noOfSectionsModifer = 0 #-2 is shorter, 2 is longer, 0 is normal
-noVoices=4
-generateMP3 = True
+noOfSectionsModifer = int(sys.argv[2]) #-2 is shorter, 2 is longer, 0 is normal
+noVoices=int(sys.argv[3])
+generateMP3 = False
 
 try:
 	os.mkdir(outPath)
