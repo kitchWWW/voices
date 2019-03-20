@@ -8,11 +8,11 @@ timeStamp = sys.argv[1]
 if '---' in timeStamp:
 	seed = timeStamp.split('---')[0]
 	random.seed(a=seed)
-outfile = "part_no_{pNo}.wav"
+outfile = "part_no_{pNo}"
 outPath = "out/"+timeStamp+"/"
 noOfSectionsModifer = int(sys.argv[2]) #-2 is shorter, 2 is longer, 0 is normal
 noVoices=int(sys.argv[3])
-generateMP3 = False
+generateMP3 = True
 
 try:
 	os.mkdir(outPath)
@@ -607,7 +607,7 @@ for p in range(len(parts)):
 		data.append( [w.getparams(), w.readframes(w.getnframes())] )
 		w.close()
 
-	output = wave.open(outPath+outfile.format(pNo=str(p+1)), 'wb')
+	output = wave.open(outPath+outfile.format(pNo=str(p+1))+".wav", 'wb')
 	output.setparams(data[0][0])
 	# print parts[p]
 	dataIndex = 0
@@ -621,8 +621,9 @@ for p in range(len(parts)):
 # and convert it to an MP3?
 if generateMP3:
 	for p in range(len(parts)):
-		pass
-		os.system("lame --preset insane "+outPath+outfile.format(pNo=str(p+1)) +" &" )
+		pathName = outPath+outfile.format(pNo=str(p+1))
+		print "./ffmpeg -i "+pathName+".wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 "+pathName+".mp3"
+		os.system("./ffmpeg -i "+pathName+".wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 "+pathName+".mp3")
 
 
 
