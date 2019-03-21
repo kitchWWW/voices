@@ -624,6 +624,8 @@ if generateMP3:
 		pathName = outPath+outfile.format(pNo=str(p+1))
 		print "./ffmpeg -i "+pathName+".wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 "+pathName+".mp3"
 		os.system("./ffmpeg -i "+pathName+".wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 "+pathName+".mp3")
+		os.system("rm "+pathName+".wav")
+		os.system("sudo rm "+pathName+".wav")
 
 
 
